@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	"produtos",
 	"rest_framework",
+	"drf_spectacular",
+	"django_filters",
 ]
 
 MIDDLEWARE = [
@@ -127,3 +129,19 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+	"DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+ ],
+
+ "DEFAULT_PAGINATION_CLASS": "produtos.pagination.ProdutoPagination",
+    "PAGE_SIZE": 10,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "API de Produtos",
+    "DESCRIPTION": "API de produtos construída com Django REST Framework",
+    "VERSION": "1.0.0",
+}
+
